@@ -193,7 +193,7 @@ class exkp(nn.Module):
         curr_dim = dims[0]
 
         self.pre = nn.Sequential(
-            convolution(7, 3, 128, stride=2),
+            convolution(7, 1, 128, stride=2),
             residual(3, 128, 256, stride=2)
         ) if pre is None else pre
 

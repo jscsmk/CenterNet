@@ -112,7 +112,7 @@ class PoseResNet(nn.Module):
         self.heads = heads
 
         super(PoseResNet, self).__init__()
-        self.conv1 = nn.Conv2d(3, 64, kernel_size=7, stride=2, padding=3,
+        self.conv1 = nn.Conv2d(1, 64, kernel_size=7, stride=2, padding=3,
                                bias=False)
         self.bn1 = nn.BatchNorm2d(64, momentum=BN_MOMENTUM)
         self.relu = nn.ReLU(inplace=True)
@@ -145,8 +145,7 @@ class PoseResNet(nn.Module):
               out_channels=num_output,
               kernel_size=1,
               stride=1,
-              padding=0
-          )
+              padding=0)
           self.__setattr__(head, fc)
 
         # self.final_layer = nn.ModuleList(self.final_layer)
@@ -209,6 +208,7 @@ class PoseResNet(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x):
+        x = x.float()
         x = self.conv1(x)
         x = self.bn1(x)
         x = self.relu(x)
