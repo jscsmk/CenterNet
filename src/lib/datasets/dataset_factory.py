@@ -6,14 +6,17 @@ from .sample.ddd import DddDataset
 from .sample.exdet import EXDetDataset
 from .sample.ctdet import CTDetDataset
 from .sample.multi_pose import MultiPoseDataset
+from .sample.pano_det import PanoDataset
 
 from .dataset.coco import COCO
 from .dataset.pascal import PascalVOC
 from .dataset.kitti import KITTI
 from .dataset.coco_hp import COCOHP
+from .dataset.pano import PANO
 
 
 dataset_factory = {
+  'pano': PANO,
   'coco': COCO,
   'pascal': PascalVOC,
   'kitti': KITTI,
@@ -21,6 +24,7 @@ dataset_factory = {
 }
 
 _sample_factory = {
+  'pano_det': PanoDataset,
   'exdet': EXDetDataset,
   'ctdet': CTDetDataset,
   'ddd': DddDataset,
