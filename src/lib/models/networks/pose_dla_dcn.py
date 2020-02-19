@@ -228,7 +228,7 @@ class DLA(nn.Module):
         self.channels = channels
         self.num_classes = num_classes
         self.base_layer = nn.Sequential(
-            nn.Conv2d(3, channels[0], kernel_size=7, stride=1,
+            nn.Conv2d(1, channels[0], kernel_size=7, stride=1,
                       padding=3, bias=False),
             nn.BatchNorm2d(channels[0], momentum=BN_MOMENTUM),
             nn.ReLU(inplace=True))
@@ -484,7 +484,7 @@ class DLASeg(nn.Module):
 
 def get_pose_net(num_layers, heads, head_conv=256, down_ratio=4):
   model = DLASeg('dla{}'.format(num_layers), heads,
-                 pretrained=True,
+                 pretrained=False,
                  down_ratio=down_ratio,
                  final_kernel=1,
                  last_level=5,
